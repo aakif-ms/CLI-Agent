@@ -2,12 +2,10 @@ from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI
 from rich.console import Console
 import json
+from llm import get_llm
 from state import AgentState
-from dotenv import load_dotenv
 
-load_dotenv()
-
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.1)
+llm = get_llm()
 
 console = Console()
 
