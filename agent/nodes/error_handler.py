@@ -4,8 +4,8 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.prompt import Prompt
 
-from state import AgentState
-from llm import get_llm
+from ..state import AgentState
+from ..llm import get_llm
 
 console = Console()
 
@@ -36,8 +36,8 @@ def handle_error(state: AgentState) -> AgentState:
         SystemMessage(content=SYSTEM_PROMPT),
         HumanMessage(
             content=(
-                f"Original Task: {original_intent}\n",
-                f"Failed command: `{failed_cmd}`\n",
+                f"Original Task: {original_intent}\n"
+                f"Failed command: `{failed_cmd}`\n"
                 f"Error output:\n{error_msg}"
             )
         ),

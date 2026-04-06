@@ -1,13 +1,13 @@
 from langgraph.graph import StateGraph, END
 
-from state import AgentState
-from nodes.validator import validate_intent
-from nodes.generator import generate_command
-from nodes.risk import assess_risk
-from nodes.explainer import explainer
-from nodes.hitl import hitl_approval
-from nodes.executor import execute_command
-from nodes.error_handler import handle_error
+from .state import AgentState
+from .nodes.validator import validate_intent
+from .nodes.generator import generate_command
+from .nodes.risk import assess_risk
+from .nodes.explainer import explainer
+from .nodes.hitl import hitl_approval
+from .nodes.executor import execute_command
+from .nodes.error_handler import handle_error
 
 def route_after_validation(state: AgentState) -> str:
     return "generate_command" if state.get("is_valid") else END
@@ -25,7 +25,7 @@ def route_after_hitl(state: AgentState) -> str:
     return END
 
 def route_after_execution(state: AgentState) -> str:
-    if state.get("execution_sucess"):
+    if state.get("execution_success"):
         return END
     return "handle_error"
 

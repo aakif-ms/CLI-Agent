@@ -3,7 +3,7 @@ from rich.panel import Panel
 from rich.prompt import Prompt
 from rich.text import Text
 
-from state import AgentState
+from ..state import AgentState
 
 console = Console()
 
@@ -82,7 +82,7 @@ def hitl_approval(state: AgentState) -> AgentState:
 
         elif choice == "E":
             console.print(
-                f"[dim]  Current command: {state.get('generated_cmd', '')}[/dim]"
+                f"[dim]  Current command: {state.get('generated_command', '')}[/dim]"
             )
             edited = Prompt.ask("[bold]  Enter your edited command[/bold]").strip()
             if not edited:
@@ -95,7 +95,7 @@ def hitl_approval(state: AgentState) -> AgentState:
             return {
                 **state,
                 "hitl_decision": "edit",
-                "generated_cmd": edited,          
+                "generated_command": edited,          
                 "edited_cmd": edited,             
             }
 
@@ -116,7 +116,7 @@ def hitl_approval(state: AgentState) -> AgentState:
                 **state,
                 "hitl_decision": "retry",
                 "retry_count": retry_count + 1,
-                "generated_cmd": None,
+                "generated_command": None,
                 "risk_level": None,
                 "explanation": None,
             }

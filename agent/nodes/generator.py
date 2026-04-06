@@ -1,8 +1,8 @@
 import json
 from langchain_core.messages import SystemMessage, HumanMessage
 from rich.console import Console
-from state import AgentState
-from llm import get_llm
+from ..state import AgentState
+from ..llm import get_llm
 
 console = Console()
 
@@ -24,7 +24,8 @@ Rules:
 - Prefer single-line commands. Use semicolons or pipelines as needed.
 - Use built-in cmdlets over external tools where possible.
 - Do NOT include dangerous flags like -Force or -Recurse unless absolutely necessary.
-- Use $env:USERPROFILE instead of hardcoded paths.
+- For file listing operations (ls, list, dir, etc.), use the current directory (.) unless a specific path is mentioned.
+- Use $env:USERPROFILE only when the user explicitly asks for their home directory.
 - If the request is ambiguous, make safe assumptions and note them in "intent".
 """
 
@@ -57,7 +58,7 @@ def generate_command(state: AgentState) -> AgentState:
     
     return {
         **state,
-        "generated_cmd": command,
+        "generated_command": command,
         "cmd_intent": intent,
         "edited_cmd": None, 
     }

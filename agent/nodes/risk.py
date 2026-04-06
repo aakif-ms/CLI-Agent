@@ -1,8 +1,8 @@
 import json
 from langchain_core.messages import HumanMessage, SystemMessage
 from rich.console import Console
-from state import AgentState
-from llm import get_llm
+from ..state import AgentState
+from ..llm import get_llm
 
 console = Console()
 
@@ -31,7 +31,7 @@ Respond with EXACTLY this JSON (no markdown, no extra text):
 def assess_risk(state: AgentState) -> AgentState:
     console.print("\n[bold cyan]🛡️  [Node 3 / Risk Assessor][/bold cyan] Evaluating risk...")
     
-    cmd = state.get("generated_cmd", "")
+    cmd = state.get("generated_command", "")
     llm = get_llm()
 
     messages = [

@@ -3,7 +3,7 @@ import shutil
 import subprocess
 from rich.console import Console
 from rich.panel import Panel
-from state import AgentState
+from ..state import AgentState
 
 console = Console()
 
@@ -64,7 +64,7 @@ def execute_command(state: AgentState) -> AgentState:
             return {
                 **state,
                 "execution_output": output,
-                "execution_sucess": True,
+                "execution_success": True,
                 "error_message": None 
             }
         else:
@@ -73,7 +73,7 @@ def execute_command(state: AgentState) -> AgentState:
             return {
                 **state,
                 "execution_output": stdout,
-                "execution_sucess": False,
+                "execution_success": False,
                 "error_message": error
             }
     except subprocess.TimeoutExpired:

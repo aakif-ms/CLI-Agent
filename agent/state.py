@@ -17,7 +17,7 @@ class AgentState(TypedDict):
     hitl_decision: NodeDecision
     edited_cmd: Optional[str]
     execution_output: Optional[str]
-    execution_sucess: Optional[bool]
+    execution_success: Optional[bool]
     error_message: Optional[str]
     error_explanation: Optional[str]
     suggested_fix: Optional[str]
